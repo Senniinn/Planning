@@ -1,46 +1,44 @@
 @extends('layouts.app')
 
-
-<div class="row" style="height: 200px; background-image: url({{'/images/nav.png'}})">
-
-    <div class="text-center" style="margin-top: 4%">
-        <button type="button" class="btn btn-success color-5F271B btn-lg" style="width: 700px" data-toggle="modal" data-target="#exampleModal">Créer un planning</button>
+<div class="row body">
+    <div class="col-9">
+        <table class="table text-white" style="text-align: center;">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col" style="text-align: center;">Nom</th>
+                <th scope="col" style="text-align: center;">Type</th>
+                <th scope="col" style="text-align: center;">Date</th>
+                <th scope="col" style="text-align: center;">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($plannings as $planning)
+            <tr>
+                <th scope="row">{{$planning->plan_id}}</th>
+                <td><a href="{{route('show', ['plan' => $planning->plan_id])}}">{{$planning->name}}</a></td>
+                <td>{{$planning->type_name}}</td>
+                <td>{{$planning->date}}</td>
+                <td>
+                    <a href="{{route('edit', ['plan' => $planning->plan_id])}}">
+                        <img style="padding: 5px" src="{{asset('/images/modif.png')}}">
+                    </a>
+                    <a href="{{route('delete', ['plan' => $planning->plan_id])}}">
+                        <img style="padding: 5px" src="{{asset('/images/supp.png')}}">
+                    </a>
+                </td>
+            </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
 
+    <div class="col-3" id="img_right" style="background-image: url({{'/images/nav.png'}})">
+        <a href="#exampleModal" data-toggle="modal">
+        </a>
+    </div>
 </div>
 
-<div class="container" style="margin-top: 2%">
-    <table class="table" style="text-align: center;">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col" style="text-align: center;">Nom</th>
-            <th scope="col" style="text-align: center;">Type</th>
-            <th scope="col" style="text-align: center;">Date</th>
-            <th scope="col" style="text-align: center;">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($plannings as $planning)
-        <tr>
-            <th scope="row">{{$planning->plan_id}}</th>
-            <td><a href="{{route('show', ['plan' => $planning->plan_id])}}">{{$planning->name}}</a></td>
-            <td>{{$planning->type_name}}</td>
-            <td>{{$planning->date}}</td>
-            <td>
-                <a href="{{route('edit', ['plan' => $planning->plan_id])}}">
-                    <img style="padding: 5px" src="{{asset('/images/modif.png')}}">
-                </a>
-                <a href="{{route('delete', ['plan' => $planning->plan_id])}}">
-                    <img style="padding: 5px" src="{{asset('/images/supp.png')}}">
-                </a>
-            </td>
-        </tr>
-        @endforeach
-        </tbody>
-    </table>
-
-</div>
 
 
 <!-- Modal -->
@@ -61,3 +59,4 @@
         </div>
     </div>
 </div>
+
