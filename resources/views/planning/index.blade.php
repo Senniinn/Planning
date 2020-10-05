@@ -31,6 +31,40 @@
             @endforeach
             </tbody>
         </table>
+        <br>
+        <div class="container">
+            @foreach($plannings as $planning)
+                <div>
+                    <div class="d-flex justify-content-between bg-dark text-white mt-3 rounded border border-info">
+                        <div class="p-4">
+                            <h2>
+                                {{$planning->name}}
+                            </h2>
+                        </div>
+                        <div class="p-4">
+                            <h2>
+                                {{$planning->type_name}}
+                            </h2>
+                        </div>
+                        <div class="p-4">
+                            <h2>
+                                {{$planning->date}}
+                            </h2>
+                        </div>
+                        <div class="p-4">
+                            <div class="row">
+                                <a href="{{route('edit', ['plan' => $planning->plan_id])}}">
+                                    <img style="padding: 5px" src="{{asset('/images/modif.png')}}">
+                                </a>
+                                <a href="{{route('delete', ['plan' => $planning->plan_id])}}">
+                                    <img style="padding: 5px" src="{{asset('/images/supp.png')}}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
 
     <div class="col-3" id="img_right" style="background-image: url({{'/images/nav.png'}})">
