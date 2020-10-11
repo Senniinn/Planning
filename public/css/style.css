@@ -1,24 +1,98 @@
 html, body {
     height: 100%;
+    border-collapse: collapse;
+    overflow-x: hidden;
 }
 
 .body {
     height: 100%;
+}
+
+.div_left {
     background-color: #252C32;
 }
 
+h1 {
+    font-family: 'Carter One', cursive;
+}
 
-#img_right {
+h2, h3, h4, h5, a {
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+
+.div_right {
+    position: relative;
     height: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-left:3px solid #41505F;
+    background-color: #0f1519;
+    transition: transform 250ms;
 }
 
-#img_right :hover {
-    opacity: 1;
+.div_right :hover {
+    background-color: #131A20;
 }
 
-a {display: block;}
 
-#img_right a{
+.add_plan_div {
+    transition: transform 250ms;
+}
+
+.add_plan_div :hover {
+    opacity: 1!important;
+    transform: scale(1.5);
+}
+
+
+
+a {
+    display: block;
+    color: inherit;
+    text-decoration: none!important;
+}
+
+a:link, a:visited, a:active, a:hover {
+    color: white !important;
+}
+
+.div_right a{
     width: 100%;
     height: 100%;
+}
+
+.btn_index {
+    transition: transform 250ms;
+}
+
+.btn_index :hover {
+    transform: scale(1.05);
+}
+
+.div_color {
+    background-color: #242D34;
+}
+
+.zoom {
+    transition: transform .3s;
+    background-color: #242D34;
+}
+
+.zoom:hover {
+    transform: scale(1.01);
+    background-color: #283138;
+
+}
+
+.modal-header{
+    background-color: #242D34;
+}
+
+.modal-body {
+    background-color: #283138;
+}
+
+.modal-footer {
+    background-color: #242D34;
 }
