@@ -12,7 +12,7 @@ class PlanningController extends Controller
 {
     public function index()
     {
-        $plannings = DB::table('plannings')->join('types', 'types.id', '=', 'plannings.type_id')->get();
+        $plannings = DB::table('plannings')->join('types', 'x.id', '=', 'plannings.type_id')->get();
 
         return view ('planning.index', ['plannings' => $plannings]);
     }

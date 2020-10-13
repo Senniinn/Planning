@@ -14,13 +14,16 @@ class CreateTasksTable extends Migration
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('name');
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->string('task_name');
+            $table->date('date');
+            $table->string('start');
+            $table->string('end');
             $table->text('description');
-            $table->unsignedBigInteger('planning_id')->index();
-            $table->timestamps();
+            $table->boolean('done');
+            $table->integer('planning_id')->unsigned();
+            $table->foreign('planning_id')->references('plan_id')->on('plannings');
         });
     }
 

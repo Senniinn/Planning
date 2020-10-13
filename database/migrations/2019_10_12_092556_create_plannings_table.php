@@ -14,11 +14,12 @@ class CreatePlanningsTable extends Migration
     public function up()
     {
         Schema::create('plannings', function (Blueprint $table) {
-            $table->increments('id');
+            $table->engine = 'InnoDB';
+            $table->increments('plan_id');
             $table->string('name');
             $table->date('date');
-            $table->unsignedBigInteger('type_id')->index();
-            $table->timestamps();
+            $table->integer('type_id')->unsigned();
+            $table->foreign('type_id')->references('id')->on('types');
         });
     }
 
