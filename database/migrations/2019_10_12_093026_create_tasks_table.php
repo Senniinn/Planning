@@ -17,7 +17,7 @@ class CreateTasksTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('task_name');
-            $table->date('date');
+            $table->date('date_task');
             $table->string('start');
             $table->string('end');
             $table->text('description');

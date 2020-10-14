@@ -79,13 +79,14 @@ class PlanningController extends Controller
 
         for ($i = 1; $i<= $count; $i++){
             $task_name = "task_name".$i;
+            $task_date = "task_date".$i;
             $start_task_date = "start_task_date".$i;
             $end_task_date = "end_task_date".$i;
             $description = "description".$i;
 
             $task = new Task([
                 'task_name' => $request->$task_name,
-                'date_task' => $request->planning_date,
+                'date_task' => $request->$task_date,
                 'start' => $request->$start_task_date,
                 'end' => $request->$end_task_date,
                 'description' => $request->$description,

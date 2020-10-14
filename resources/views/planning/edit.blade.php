@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<div class="div_left text-white body">
+<div class="text-white">
     <form class="form-horizontal" method="POST" action="{{ route('update', $planning->plan_id) }}">
         {{ csrf_field() }}
         <div class="d-flex justify-content-center">
@@ -35,7 +35,7 @@
                 <div class="p-4 div_color rounded border col-3">
                     <div class="d-flex justify-content-between">
                         <h3>Task n° {{$key+1}}</h3>
-                        <a href="/task/delete/{{$planning->plan_id}}/{{$task->task_id}}">
+                        <a href="/task/delete/{{$planning->plan_id}}/{{$task->id}}">
                             <i class="fa fa-2x fa-trash-alt"></i>
                         </a>
                     </div>
@@ -44,6 +44,15 @@
                         <label for="task_name{{$key+1}}" class="col-8 control-label">Nom de la tache</label>
                         <div class="col-12">
                             <input type='text' class="form-control" name="task_name{{$key+1}}" value="{{$task->task_name}}" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- DATE TASK -->
+                        <label for="task_date{{$key+1}}" class="col-8 control-label">Date Tache</label>
+                        <div class='input-group date' id='datetimepicker3'>
+                            <div class="col-12">
+                                <input type='date' class="form-control" name="task_date{{$key+1}}" value="{{$task->date_task}}"/>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -71,7 +80,7 @@
                             <textarea class="form-control" name="description{{$key+1}}" rows="3">{{$task->description}}</textarea>
                         </div>
                     </div>
-                    <input type="hidden" name="id_task" value="{{$task->task_id}}">
+                    <input type="hidden" name="id_task" value="{{$task->id}}">
                 </div>
             @endforeach
                 <div id="{{$count_task_next}}" style="display: none" class="p-4 div_color rounded border col-3">
@@ -110,6 +119,15 @@
             "                                    <div class=\"col-12\">\n" +
             "                                        <input type='text' class=\"form-control\" name=\"task_name"+i+"\" required/>\n" +
             "                                    </div>\n" +
+            "                            </div>\n" +
+            "                            <div class=\"form-group\">\n" +
+            "                                <!-- DATE TASK -->\n" +
+            "                                <label for=\"task_date\" class=\"col-8 control-label\">Date</label>\n" +
+            "                                <div class='input-group date' id='datetimepicker3'>\n" +
+            "                                    <div class=\"col-12\">\n" +
+            "                                        <input type='date' class=\"form-control\" name=\"task_date"+i+"\" required/>\n" +
+            "                                    </div>\n" +
+            "                                </div>\n" +
             "                            </div>\n" +
             "                            <div class=\"form-group\">\n" +
             "                                <!-- DATE DEBUT TASK -->\n" +

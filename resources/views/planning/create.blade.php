@@ -69,6 +69,15 @@
             "                                    </div>\n" +
             "                            </div>\n" +
             "                            <div class=\"form-group\">\n" +
+            "                                <!-- DATE TASK -->\n" +
+            "                                <label for=\"task_date\" class=\"col-8 control-label\">Date</label>\n" +
+            "                                <div class='input-group date' id='datetimepicker3'>\n" +
+            "                                    <div class=\"col-12\">\n" +
+            "                                        <input type='date' class=\"form-control\" name=\"task_date"+i+"\" required/>\n" +
+            "                                    </div>\n" +
+            "                                </div>\n" +
+            "                            </div>\n" +
+            "                            <div class=\"form-group\">\n" +
             "                                <!-- DATE DEBUT TASK -->\n" +
             "                                <label for=\"start_task_date\" class=\"col-8 control-label\">Date Début Tache</label>\n" +
             "                                <div class='input-group date' id='datetimepicker3'>\n" +
