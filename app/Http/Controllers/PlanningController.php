@@ -85,9 +85,11 @@ class PlanningController extends Controller
 
             $task = new Task([
                 'task_name' => $request->$task_name,
+                'date_task' => $request->planning_date,
                 'start' => $request->$start_task_date,
                 'end' => $request->$end_task_date,
                 'description' => $request->$description,
+                'done' => false,
                 'planning_id' => $plan_id
             ]);
             $task->save();

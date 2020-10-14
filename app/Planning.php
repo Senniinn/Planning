@@ -8,11 +8,13 @@ class Planning extends Model
 {
     protected $guarded = [];
 
+    public $timestamps = false;
+
     public function type(){
-        return $this->hasOne('App\Type');
+        return $this->hasOne(Type::class);
     }
 
     public function task(){
-        return $this->hasMany('App\Task');
+        return $this->hasMany(Task::class);
     }
 }
