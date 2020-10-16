@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Planning;
 use App\Task;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
@@ -24,9 +25,10 @@ class PlanningController extends Controller
 
     public function show($plan)
     {
+        $planning = DB::table('plannings')->where('plan_id', $plan)->first();
         $tasks = DB::table('tasks')->join('plannings', 'plannings.plan_id', '=', 'tasks.planning_id')->where('planning_id', $plan)->get();
 
-        return view ('planning.show', ['tasks' => $tasks]);
+        return view ('planning.show', ['tasks' => $tasks, 'planning' => $planning]);
     }
 
 
@@ -48,6 +50,8 @@ class PlanningController extends Controller
     public function update(Request $request, $id)
     {
         $plannings = DB::table('plannings')->join('types', 'types.id', '=', 'plannings.type_id')->get();
+
+
 
         if ($id != 0){
             $plan = DB::table('plannings')->where('plan_id', $id)->first();
@@ -84,16 +88,25 @@ class PlanningController extends Controller
             $end_task_date = "end_task_date".$i;
             $description = "description".$i;
 
+            $s_date_start = strtotime($request->$start_task_date);
+            $date_start = new DateTime("@$s_date_start");
+            $s_date_end = strtotime($request->$end_task_date);
+            $date_end = new DateTime("@$s_date_end");
+            $interval = $date_start->diff($date_end);
+            $string = $interval->h ."h : ". $interval->i . "min";
+
             $task = new Task([
                 'task_name' => $request->$task_name,
                 'date_task' => $request->$task_date,
                 'start' => $request->$start_task_date,
                 'end' => $request->$end_task_date,
                 'description' => $request->$description,
+                'long' => $string,
                 'done' => false,
                 'planning_id' => $plan_id
             ]);
             $task->save();
+
         }
 
         return redirect  ('/');

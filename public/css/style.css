@@ -98,3 +98,12 @@ a:link, a:visited, a:active, a:hover {
 .modal-footer {
     background-color: #242D34;
 }
+
+.hover_zoom {
+    transition: transform .3s;
+}
+
+.hover_zoom:hover {
+    transform: scale(1.05);
+}
+

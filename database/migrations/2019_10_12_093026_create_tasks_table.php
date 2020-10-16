@@ -20,6 +20,7 @@ class CreateTasksTable extends Migration
             $table->date('date_task');
             $table->string('start');
             $table->string('end');
+            $table->string('long');
             $table->text('description');
             $table->boolean('done');
             $table->integer('planning_id')->unsigned();
