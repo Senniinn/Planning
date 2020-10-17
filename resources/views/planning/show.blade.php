@@ -14,7 +14,7 @@
     <div class="container">
         <div class="zoom">
             @foreach($tasks as $task)
-                <div class="text-white mt-3 rounded border" onclick="myFunction({{$task->id}})">
+                <div class="text-white mt-3 rounded border" onclick="myFunction({{$task->id}})" >
                     <div class="row justify-content-around col-12">
                         <div class="col-4 p-3">
                             <h3>{{date('d / m / Y', strtotime($task->date_task))}}</h3>
@@ -23,9 +23,23 @@
                             <h2>{{$task->task_name}}</h2>
                         </div>
                         <div class="col-4 p-3 text-right">
-                            <a href="#">
-                                <i class="far fa-2x fa-check-circle"></i>
+                            @if($task->done != true)
+                            <a href="/task/update_done/{{$planning->plan_id}}/{{$task->id}}">
+                                <div class="d-flex justify-content-end">
+                                    <div class="row rounded border p-2 highlight pl-1 pr-1">
+                                        <h3 class="pr-3">Done</h3>
+                                        <i class="far fa-2x fa-check-circle"></i>
+                                    </div>
+                                </div>
                             </a>
+                            @else
+                                <div class="d-flex justify-content-end">
+                                    <div class="row rounded border p-2 highlight pl-1 pr-1" style="background-color: #67b168;">
+                                        <h3 class="pr-3">Done</h3>
+                                        <i class="far fa-2x fa-check-circle"></i>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="row justify-content-center col-12 text-center p-4">

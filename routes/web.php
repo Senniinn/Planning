@@ -31,6 +31,7 @@ Route::get('/', 'PlanningController@index')->name('planning');
 Route::post('/plan/delete/{id}', ['as' => 'delete_plan' , 'uses' => 'PlanningController@delete_task']);
 
 Route::get('/task/delete/{plan_id}/{task_id}', 'PlanningController@delete_task')->name('delete_task');
+Route::get('/task/update_done/{plan_id}/{task_id}', 'PlanningController@task_done')->name('task_done');
 
 Route::get('/edit/{plan}', 'PlanningController@edit')->name('edit');
 

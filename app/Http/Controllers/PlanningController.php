@@ -110,7 +110,6 @@ class PlanningController extends Controller
         }
 
         return redirect  ('/');
-
     }
 
     public function delete_task($id_plan, $id_task)
@@ -123,6 +122,18 @@ class PlanningController extends Controller
         DB::table('tasks')->where('task_id', '=', $id_task)->delete();
 
         return redirect('/edit/'. $planning->plan_id);
+
+    }
+
+    public function task_done($id_plan, $id_task)
+    {
+        $planning = DB::table('plannings')->where('plan_id', $id_plan)->first();
+
+        DB::table('tasks')->where('id', $id_task)->update([
+            'done' => true,
+        ]);
+
+        return redirect('/show/'. $planning->plan_id);
 
     }
 

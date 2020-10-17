@@ -107,3 +107,7 @@ a:link, a:visited, a:active, a:hover {
     transform: scale(1.05);
 }
 
+.highlight:hover {
+    background-color: #67b168;
+}
+
