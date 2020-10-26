@@ -6,15 +6,15 @@
     </div>
     <div class="col-3 text-right p-4 hover_zoom">
         <a href="{{route('planning')}}">
-            <i class="fas fa-4x fa-undo-alt"></i>
+            <i class="fas fa-3x fa-undo-alt"></i>
         </a>
     </div>
 </div>
 
     <div class="container">
-        <div class="zoom">
-            @foreach($tasks as $task)
-                <div class="text-white mt-3 rounded border" onclick="myFunction({{$task->id}})" >
+        @foreach($tasks as $task)
+            <div class="zoom">
+                <div class="text-white mt-3 rounded border" onclick="myFunction({{$task->id}})">
                     <div class="row justify-content-around col-12">
                         <div class="col-4 p-3">
                             <h3>{{date('d / m / Y', strtotime($task->date_task))}}</h3>
@@ -59,12 +59,15 @@
                             <h4>{{$task->end}}</h4>
                         </div>
                     </div>
-                    <div id="divToggle{{$task->id}}" style="display: none">
-                        <p>{{$task->description}}</p>
+                    <div class="d-flex justify-content-center">
+                        <div id="divToggle{{$task->id}}" class="text-center col-9" style="display: none">
+                            <hr>
+                            <p class="mt-4 mb-4">{{$task->description}}</p>
+                        </div>
                     </div>
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
     </div>
 
 <script>

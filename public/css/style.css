@@ -13,6 +13,8 @@ html, body {
     background-color: #252C32;
 }
 
+hr { background-color: white; size: 1px; width: 30%; border: 0; }
+
 
 h1 {
     font-family: 'Carter One', cursive;
@@ -20,6 +22,11 @@ h1 {
 
 h2, h3, h4, h5, a {
     font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
 }
 
 

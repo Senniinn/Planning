@@ -7,13 +7,15 @@ use App\Task;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\QueryException;
 
 class PlanningController extends Controller
 {
     public function index()
     {
-        $plannings = DB::table('plannings')->join('types', 'types.id', '=', 'plannings.type_id')->get();
+        $plannings = DB::table('plannings')
+            ->join('types', 'types.id', '=', 'plannings.type_id')
+            ->get();
+
 
         return view ('planning.index', ['plannings' => $plannings]);
     }

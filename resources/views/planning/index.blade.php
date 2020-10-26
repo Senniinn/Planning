@@ -5,38 +5,46 @@
         <div class="container">
             @foreach($plannings as $planning)
                 <div class="zoom">
-                    <div class="d-flex justify-content-between text-white mt-3 rounded border" onclick="location.href='{{route('show', ['plan' => $planning->plan_id])}}';">
-                        <div class="p-5 col-4">
-                            <h2>
-                                {{$planning->name}}
-                            </h2>
-                        </div>
-                        <div class="p-5 col-2">
-                            @if($planning->type_name == "Day")
-                                <i class="fas fa-calendar-day fa-3x" title="1 Jour"></i>
-                            @elseif($planning->type_name == "Weekend")
-                                <i class="fas fa-calendar-week fa-3x" title="1 Weekend"></i>
-                            @else
-                                <i class="fas fa-calendar-alt fa-3x" title="1 Semaine"></i>
-                            @endif
-                        </div>
-                        <div class="p-5 col-3">
-                            <h3>
-                                {{date('d / m / Y', strtotime($planning->date))}}
-                            </h3>
-                        </div>
-                        <div class="p-5 col-3">
-                            <div class="row btn_index">
-                                <div class="ml-5">
-                                    <a class="btn btn-info mr-2" href="{{route('edit', ['plan' => $planning->plan_id])}}">
-                                        <i class="fa fa-2x fa-pencil-alt" ></i>
-                                    </a>
-                                    <a class="btn btn-danger ml-2" href="{{route('delete', ['plan' => $planning->plan_id])}}">
-                                        <i class="fa fa-2x fa-trash-alt"></i>
-                                    </a>
+                    <div class="text-white mt-3 rounded border">
+                        <div class="d-flex justify-content-between" onclick="location.href='{{route('show', ['plan' => $planning->plan_id])}}';">
+                            <div class="pt-5 pl-5 pr-5 pb-3 col-4">
+                                <h2>
+                                    {{$planning->name}}
+                                </h2>
+                            </div>
+                            <div class="pt-5 pl-5 pr-5 pb-3 col-2">
+                                @if($planning->type_name == "Day")
+                                    <i class="fas fa-calendar-day fa-3x" title="1 Jour"></i>
+                                @elseif($planning->type_name == "Weekend")
+                                    <i class="fas fa-calendar-week fa-3x" title="1 Weekend"></i>
+                                @else
+                                    <i class="fas fa-calendar-alt fa-3x" title="1 Semaine"></i>
+                                @endif
+                            </div>
+                            <div class="pt-5 pl-5 pr-5 pb-3 col-3">
+                                <h3>
+                                    {{date('d / m / Y', strtotime($planning->date))}}
+                                </h3>
+                            </div>
+                            <div class="pt-5 pl-5 pr-5 pb-3 col-3">
+                                <div class="row btn_index">
+                                    <div class="ml-5">
+                                        <a class="btn btn-info mr-2" href="{{route('edit', ['plan' => $planning->plan_id])}}">
+                                            <i class="fa fa-2x fa-pencil-alt" ></i>
+                                        </a>
+                                        <a class="btn btn-danger ml-2" href="{{route('delete', ['plan' => $planning->plan_id])}}">
+                                            <i class="fa fa-2x fa-trash-alt"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="p-3 col-9 ml-4">
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             @endforeach

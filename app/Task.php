@@ -10,7 +10,18 @@ class Task extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'id',
+        'task_name',
+        'date_task',
+        'start',
+        'end',
+        'long',
+        'description',
+        'done',
+    ];
+
     public function planning(){
-        return $this->belongsTo(Planning::class);
+        return $this->belongsTo('App\Planning');
     }
 }
