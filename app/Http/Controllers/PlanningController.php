@@ -12,10 +12,7 @@ class PlanningController extends Controller
 {
     public function index()
     {
-        $plannings = DB::table('plannings')
-            ->join('types', 'types.id', '=', 'plannings.type_id')
-            ->get();
-
+        $plannings = Planning::all();
 
         return view ('planning.index', ['plannings' => $plannings]);
     }
@@ -27,8 +24,8 @@ class PlanningController extends Controller
 
     public function show($plan)
     {
-        $planning = DB::table('plannings')->where('plan_id', $plan)->first();
-        $tasks = DB::table('tasks')->join('plannings', 'plannings.plan_id', '=', 'tasks.planning_id')->where('planning_id', $plan)->get();
+        $planning = DB::table('planning')->where('id', $plan)->first();
+        $tasks = Task::all()->where('planning_id', $plan);
 
         return view ('planning.show', ['tasks' => $tasks, 'planning' => $planning]);
     }
@@ -36,8 +33,8 @@ class PlanningController extends Controller
 
     public function edit($id)
     {
-        $planning = DB::table('plannings')->where('plan_id', $id)->first();
-        $tasks = DB::table('tasks')->join('plannings', 'plannings.plan_id', '=', 'tasks.planning_id')->where('planning_id', $id)->get();
+        $planning = Planning::all()->where('id', $id)->first();
+        $tasks = Task::all()->where('planning_id', $id);
         $count_task = $tasks->count();
         $count_task_next = $count_task + 1;
 
@@ -51,21 +48,15 @@ class PlanningController extends Controller
 
     public function update(Request $request, $id)
     {
-        $plannings = DB::table('plannings')->join('types', 'types.id', '=', 'plannings.type_id')->get();
-
-
-
         if ($id != 0){
-            $plan = DB::table('plannings')->where('plan_id', $id)->first();
-            $plan_id = $plan->plan_id;
-            DB::table('plannings')->where('plan_id', $id)->update([
+            $plan = DB::table('planning')->where('id', $id)->first();
+            $plan_id = $plan->id;
+            DB::table('planning')->where('id', $id)->update([
                 'name' => $request->planning_name,
                 'date' => $request->planning_date,
             ]);
 
-            $tasks = DB::table('tasks')->join('plannings', 'plannings.plan_id', '=', 'tasks.planning_id')->where('planning_id', $id)->delete();
-
-
+            DB::table('task')->join('planning', 'planning.id', '=', 'task.planning_id')->where('planning_id', $id)->delete();
         }
         else {
             $plan = new Planning([
@@ -116,44 +107,36 @@ class PlanningController extends Controller
 
     public function delete_task($id_plan, $id_task)
     {
-        $planning = DB::table('plannings')->where('plan_id', $id_plan)->first();
-        $tasks = DB::table('tasks')->join('plannings', 'plannings.plan_id', '=', 'tasks.planning_id')->where('planning_id', $id_plan)->get();
-        $count_task = $tasks->count();
-        $count_task_next = $count_task + 1;
+        $planning = Planning::all()->where('id', $id_plan)->first();
 
-        DB::table('tasks')->where('task_id', '=', $id_task)->delete();
+        DB::table('task')->where('id', '=', $id_task)->delete();
 
-        return redirect('/edit/'. $planning->plan_id);
-
+        return redirect('/edit/'. $planning->id);
     }
 
     public function task_done($id_plan, $id_task)
     {
-        $planning = DB::table('plannings')->where('plan_id', $id_plan)->first();
+        $planning = DB::table('planning')->where('id', $id_plan)->first();
 
-        DB::table('tasks')->where('id', $id_task)->update([
+        DB::table('task')->where('id', $id_task)->update([
             'done' => true,
         ]);
 
-        return redirect('/show/'. $planning->plan_id);
-
+        return redirect('/show/'. $planning->id);
     }
 
     public function delete($id)
     {
-        DB::table('tasks')
-            ->join('plannings', 'plannings.plan_id', '=', 'tasks.planning_id')
+        DB::table('task')
+            ->join('planning', 'planning.id', '=', 'task.planning_id')
             ->where('planning_id', $id)
             ->delete();
 
-        DB::table('plannings')
-            ->where('plan_id', $id)
+        DB::table('planning')
+            ->where('id', $id)
             ->delete();
 
-        $plannings = DB::table('plannings')->join('types', 'types.id', '=', 'plannings.type_id')->get();
-
         return redirect ('/');
-
     }
 
 }

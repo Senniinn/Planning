@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TypesSeeder extends Seeder
+class TypeTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,13 +12,13 @@ class TypesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('types')->insert([
+        DB::table('type')->insert([
             'type_name' => "Day",
         ]);
-        DB::table('types')->insert([
+        DB::table('type')->insert([
             'type_name' => "Weekend",
         ]);
-        DB::table('types')->insert([
+        DB::table('type')->insert([
             'type_name' => "Week",
         ]);
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksTable extends Migration
+class CreateTaskTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('task', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('task_name');
@@ -24,7 +24,7 @@ class CreateTasksTable extends Migration
             $table->text('description');
             $table->boolean('done');
             $table->integer('planning_id')->unsigned();
-            $table->foreign('planning_id')->references('plan_id')->on('plannings');
+            $table->foreign('planning_id')->references('id')->on('planning');
         });
     }
 
@@ -35,6 +35,6 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('task');
     }
 }

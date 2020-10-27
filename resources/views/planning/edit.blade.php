@@ -1,6 +1,6 @@
 @extends('layouts.app')
 <div class="text-white">
-    <form class="form-horizontal" method="POST" action="{{ route('update', $planning->plan_id) }}">
+    <form class="form-horizontal" method="POST" action="{{ route('update', $planning->id) }}">
         {{ csrf_field() }}
         <div class="d-flex justify-content-center">
             <div class="col-2 p-4 div_color rounded border mt-2">
@@ -35,7 +35,7 @@
                 <div class="p-4 div_color rounded border col-3">
                     <div class="d-flex justify-content-between">
                         <h3>Task n° {{$key+1}}</h3>
-                        <a href="/task/delete/{{$planning->plan_id}}/{{$task->id}}">
+                        <a href="/task/delete/{{$planning->id}}/{{$task->id}}">
                             <i class="fa fa-2x fa-trash-alt"></i>
                         </a>
                     </div>

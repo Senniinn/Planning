@@ -8,6 +8,8 @@ class Task extends Model
 {
     protected $guarded = [];
 
+    protected $table = 'task';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -19,6 +21,7 @@ class Task extends Model
         'long',
         'description',
         'done',
+        'planning_id',
     ];
 
     public function planning(){

@@ -8,8 +8,10 @@ class Planning extends Model
 {
     protected $guarded = [];
 
+    protected $table = 'planning';
+
     protected $fillable = [
-        'plan_id',
+        'id',
         'name',
         'date',
         'type_id',
@@ -22,7 +24,7 @@ class Planning extends Model
     }
 
     public function tasks(){
-        return $this->hasMany('App\Task', 'planning_id');
+        return $this->hasMany(Task::class, 'planning_id');
     }
 
     public function getTasksCount(){

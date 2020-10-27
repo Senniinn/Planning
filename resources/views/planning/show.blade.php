@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-4 p-3 text-right">
                             @if($task->done != true)
-                            <a href="/task/update_done/{{$planning->plan_id}}/{{$task->id}}">
+                            <a href="/task/update_done/{{$planning->id}}/{{$task->id}}">
                                 <div class="d-flex justify-content-end">
                                     <div class="row rounded border p-2 highlight pl-1 pr-1">
                                         <h3 class="pr-3">Done</h3>

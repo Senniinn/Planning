@@ -8,6 +8,8 @@ class Type extends Model
 {
     public $timestamps = false;
 
+    protected $table = 'type';
+
     public function planning(){
         return $this->hasMany(Planning::class);
     }
