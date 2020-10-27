@@ -1,4 +1,6 @@
 @extends('layouts.app')
+
+@section('content')
 <div class="text-white">
     <form class="form-horizontal" method="POST" action="{{ route('update', $planning->id) }}">
         {{ csrf_field() }}
@@ -167,3 +169,4 @@
 
     }
 </script>
+@endsection

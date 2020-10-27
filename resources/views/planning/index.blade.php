@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('content')
 <div class="row body">
     <div class="col-9 div_left">
         <div class="container">
@@ -45,16 +46,17 @@
                                 <div class="progress-bar"
                                      role="progressbar"
                                      style="width: {{$planning->tasks->where('done', true)->count()/$planning->getTasksCount()*100}}%;
-                                             @if($planning->tasks->where('done', true)->count()/$planning->getTasksCount()*100 < 50)
-                                             background: #9b8a30;
-                                             @elseif($planning->tasks->where('done', true)->count()/$planning->getTasksCount()*100 < 75)
-                                             background: #6b9dbb;
+                                             @if($planning->tasks->where('done', true)->count()/$planning->getTasksCount()*100 < 34)
+                                             background: #F3AB6A;
+                                             @elseif($planning->tasks->where('done', true)->count()/$planning->getTasksCount()*100 < 67)
+                                             background: #F6E15B;
                                              @else
-                                             background: #3c763d;
+                                             background: #6FCB92;
                                              @endif"
                                      aria-valuenow="45"
                                      aria-valuemin="0"
                                      aria-valuemax="100">
+                                    <strong>{{$planning->tasks->where('done', true)->count()}} / {{$planning->getTasksCount()}}</strong>
                                 </div>
                             </div>
                         </div>
@@ -105,4 +107,5 @@
         </div>
     </div>
 </div>
+@endsection
 

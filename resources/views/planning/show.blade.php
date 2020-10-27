@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('content')
 <div class="row justify-content-between col-12">
     <div class="col-4 text-white p-4">
         <h1>{{$planning->name}}</h1>
@@ -33,12 +34,14 @@
                                 </div>
                             </a>
                             @else
+                            <a href="/task/update_done/{{$planning->id}}/{{$task->id}}">
                                 <div class="d-flex justify-content-end">
                                     <div class="row rounded border p-2 highlight pl-1 pr-1" style="background-color: #67b168;">
                                         <h3 class="pr-3">Done</h3>
                                         <i class="far fa-2x fa-check-circle"></i>
                                     </div>
                                 </div>
+                            </a>
                             @endif
                         </div>
                     </div>
@@ -80,3 +83,4 @@
         }
     }
 </script>
+@endsection

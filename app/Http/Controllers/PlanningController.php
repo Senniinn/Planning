@@ -117,10 +117,19 @@ class PlanningController extends Controller
     public function task_done($id_plan, $id_task)
     {
         $planning = DB::table('planning')->where('id', $id_plan)->first();
+        $task = Task::all()->where('id', $id_task)->first();
 
-        DB::table('task')->where('id', $id_task)->update([
-            'done' => true,
-        ]);
+        if ($task->done == false){
+            DB::table('task')->where('id', $id_task)->update([
+                'done' => true,
+            ]);
+        }
+        else {
+            DB::table('task')->where('id', $id_task)->update([
+                'done' => false,
+            ]);
+        }
+
 
         return redirect('/show/'. $planning->id);
     }
