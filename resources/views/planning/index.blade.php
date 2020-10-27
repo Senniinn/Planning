@@ -1,17 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+<?php
+    $today = Carbon\Carbon::now();
+    setlocale(LC_TIME, "fr_FR");
+?>
 <div class="row body">
     <div class="col-9 div_left">
         <div class="container">
             @foreach($plannings as $planning)
-                <div class="zoom">
+                <div class="zoom" @if($planning->date < $today) style="background: #B03C3C" @endif>
                     <div class="text-white mt-3 rounded border">
                         <div class="d-flex justify-content-between" onclick="location.href='{{route('show', ['plan' => $planning->id])}}';">
                             <div class="pt-5 pl-5 pr-5 pb-3 col-4">
-                                <h2>
+                                <h3 class="mt-2">
                                     {{$planning->name}}
-                                </h2>
+                                </h3>
                             </div>
                             <div class="pt-5 pl-5 pr-5 pb-3 col-2">
                                 @if($planning->type_id == 1)
@@ -23,9 +27,9 @@
                                 @endif
                             </div>
                             <div class="pt-5 pl-5 pr-5 pb-3 col-3">
-                                <h3>
-                                    {{date('d / m / Y', strtotime($planning->date))}}
-                                </h3>
+                                <h4 class="text-center mt-2">
+                                    {{strftime("%A %d %b", strtotime($planning->date))}}
+                                </h4>
                             </div>
                             <div class="pt-5 pl-5 pr-5 pb-3 col-3">
                                 <div class="row btn_index">
@@ -45,10 +49,12 @@
                             <div class="progress">
                                 <div class="progress-bar"
                                      role="progressbar"
-                                     style="width: {{$planning->tasks->where('done', true)->count()/$planning->getTasksCount()*100}}%;
-                                             @if($planning->tasks->where('done', true)->count()/$planning->getTasksCount()*100 < 34)
+                                     style="width: @if ($planning->getTasksCount() != 0 )
+                                     {{$planning->tasks->where('done', true)->count()/$planning->getTasksCount()*100}}%;
+                                             @endif
+                                             @if($planning->getTasksCount() != 0 && $planning->tasks->where('done', true)->count()/$planning->getTasksCount()*100 < 34)
                                              background: #F3AB6A;
-                                             @elseif($planning->tasks->where('done', true)->count()/$planning->getTasksCount()*100 < 67)
+                                             @elseif($planning->getTasksCount() != 0 && $planning->tasks->where('done', true)->count()/$planning->getTasksCount()*100 < 67)
                                              background: #F6E15B;
                                              @else
                                              background: #6FCB92;
@@ -69,7 +75,7 @@
 
     <div class="col-3 div_right">
         <a href="#exampleModal" data-toggle="modal">
-            <div class="add_plan_div text-center">
+            <div class="text-center">
                 <i class="far fa-calendar-plus fa-10x icon" style="margin-top: 55%"></i>
                 <h1 class="mt-3">
                     AJOUTER

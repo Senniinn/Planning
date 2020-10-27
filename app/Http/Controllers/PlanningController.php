@@ -12,7 +12,7 @@ class PlanningController extends Controller
 {
     public function index()
     {
-        $plannings = Planning::all();
+        $plannings = Planning::orderBy('date', 'asc')->get();
 
         return view ('planning.index', ['plannings' => $plannings]);
     }

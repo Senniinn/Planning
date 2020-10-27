@@ -44,18 +44,6 @@ p {
     background-color: #131A20;
 }
 
-
-.add_plan_div {
-    transition: transform 250ms;
-}
-
-.add_plan_div :hover {
-    opacity: 1!important;
-    transform: scale(1.5);
-}
-
-
-
 a {
     display: block;
     color: inherit;
