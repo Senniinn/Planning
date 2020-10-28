@@ -34,7 +34,7 @@ class PlanningController extends Controller
     public function edit($id)
     {
         $planning = Planning::all()->where('id', $id)->first();
-        $tasks = Task::all()->where('planning_id', $id);
+        $tasks = DB::table('task')->join('planning', 'planning.id', '=', 'task.planning_id')->where('planning_id', $id)->get();
         $count_task = $tasks->count();
         $count_task_next = $count_task + 1;
 
@@ -82,9 +82,11 @@ class PlanningController extends Controller
             $description = "description".$i;
 
             $s_date_start = strtotime($request->$start_task_date);
-            $date_start = new DateTime("@$s_date_start");
+            $date_start = new DateTime();
+            $date_start->setTimestamp($s_date_start);
             $s_date_end = strtotime($request->$end_task_date);
-            $date_end = new DateTime("@$s_date_end");
+            $date_end = new DateTime();
+            $date_end->setTimestamp($s_date_end);
             $interval = $date_start->diff($date_end);
             $string = $interval->h ."h : ". $interval->i . "min";
 

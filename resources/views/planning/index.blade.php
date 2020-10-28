@@ -9,7 +9,7 @@
     <div class="col-9 div_left">
         <div class="container">
             @foreach($plannings as $planning)
-                <div class="zoom" @if($planning->date < $today) style="background: #B03C3C" @endif>
+                <div class="zoom" @if($planning->date < $today) style="background: #870909" @endif>
                     <div class="text-white mt-3 rounded border">
                         <div class="d-flex justify-content-between" onclick="location.href='{{route('show', ['plan' => $planning->id])}}';">
                             <div class="pt-5 pl-5 pr-5 pb-3 col-4">
@@ -26,8 +26,18 @@
                                     <i class="fas fa-calendar-alt fa-3x" title="1 Semaine"></i>
                                 @endif
                             </div>
+
                             <div class="pt-5 pl-5 pr-5 pb-3 col-3">
-                                <h4 class="text-center mt-2">
+                                <h4 class="text-center mt-2"
+                                @if(Carbon\Carbon::parse($planning->date)->diffInDays($today) > 7)
+                                    style="color: #FFFFFF"
+                                @elseif(Carbon\Carbon::parse($planning->date)->diffInDays($today) < 3)
+                                    style="color: #EC3131"
+                                @elseif(Carbon\Carbon::parse($planning->date)->diffInDays($today) < 8)
+                                    style="color: #F3AB6A"
+
+                                @endif
+                                    >
                                     {{strftime("%A %d %b", strtotime($planning->date))}}
                                 </h4>
                             </div>
