@@ -16,10 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('planning', PlanningController::class);
 
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/', 'PlanningController@index')->name('planning');
+Route::get('/login', 'LoginController@index');
 
 Route::get('/show/{plan}', 'PlanningController@show')->name('show');
 

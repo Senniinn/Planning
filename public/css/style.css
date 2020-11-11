@@ -106,3 +106,18 @@ a:link, a:visited, a:active, a:hover {
     background-color: #67b168;
 }
 
+.bg {
+    /* The image used */
+    background: url("/images/bg.jpg");
+    opacity: 0.8;
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+

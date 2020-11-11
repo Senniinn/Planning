@@ -25,23 +25,23 @@
                         </div>
                         <div class="col-4 p-3 text-right">
                             @if($task->done != true)
-                            <a href="/task/update_done/{{$planning->id}}/{{$task->id}}">
-                                <div class="d-flex justify-content-end">
-                                    <div class="row rounded border p-2 highlight pl-1 pr-1">
-                                        <h3 class="pr-3">Done</h3>
-                                        <i class="far fa-2x fa-check-circle"></i>
-                                    </div>
+                            <div class="d-flex justify-content-end">
+                                <a href="/task/update_done/{{$planning->id}}/{{$task->id}}">
+                                <div class="row rounded border p-2 highlight pl-1 pr-1">
+                                    <h3 class="pr-3">Done</h3>
+                                    <i class="far fa-2x fa-check-circle"></i>
                                 </div>
-                            </a>
+                                </a>
+                            </div>
                             @else
-                            <a href="/task/update_done/{{$planning->id}}/{{$task->id}}">
-                                <div class="d-flex justify-content-end">
-                                    <div class="row rounded border p-2 highlight pl-1 pr-1" style="background-color: #67b168;">
-                                        <h3 class="pr-3">Done</h3>
-                                        <i class="far fa-2x fa-check-circle"></i>
-                                    </div>
+                            <div class="d-flex justify-content-end">
+                                <a href="/task/update_done/{{$planning->id}}/{{$task->id}}">
+                                <div class="row rounded border p-2 highlight pl-1 pr-1" style="background-color: #67b168;">
+                                    <h3 class="pr-3">Done</h3>
+                                    <i class="far fa-2x fa-check-circle"></i>
                                 </div>
-                            </a>
+                                </a>
+                            </div>
                             @endif
                         </div>
                     </div>
