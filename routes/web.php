@@ -16,16 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('planning', PlanningController::class);
 
-Route::get('/', 'PlanningController@index')->name('planning');
-Route::get('/login', 'LoginController@index');
+Route::get('/', 'LoginController@index');
 
 Route::get('/show/{plan}', 'PlanningController@show')->name('show');
 
 Route::get('/create/{type}', 'PlanningController@create')->name('create');
-Route::post('/', 'PlanningController@store')->name('store');
+Route::post('/store', 'PlanningController@store')->name('store');
 
-
-Route::get('/', 'PlanningController@index')->name('planning');
+Route::get('/index', 'PlanningController@index')->name('planning');
 Route::post('/plan/delete/{id}', ['as' => 'delete_plan' , 'uses' => 'PlanningController@delete_task']);
 
 Route::get('/task/delete/{plan_id}/{task_id}', 'PlanningController@delete_task')->name('delete_task');

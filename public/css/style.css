@@ -24,7 +24,7 @@ h2, h3, h4, h5, a {
     font-family: 'Ubuntu Condensed', sans-serif;
 }
 
-p {
+p, label {
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
 }
@@ -71,6 +71,10 @@ a:link, a:visited, a:active, a:hover {
     background-color: #242D34;
 }
 
+.div_login_color {
+    background-color: #3E4042;
+}
+
 .zoom {
     transition: transform .3s;
     background-color: #242D34;
@@ -108,7 +112,7 @@ a:link, a:visited, a:active, a:hover {
 
 .bg {
     /* The image used */
-    background: url("/images/bg.jpg");
+    background: url("/images/login.jpg");
     opacity: 0.8;
 
     /* Full height */
@@ -120,4 +124,11 @@ a:link, a:visited, a:active, a:hover {
     background-size: cover;
 }
 
+.content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
 
