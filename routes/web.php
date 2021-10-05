@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::resource('planning', PlanningController::class);
 
 Route::get('/', 'LoginController@index');
+Route::post('/verifylogin', 'LoginController@authenticate')->name('verifylogin');
 
 Route::get('/show/{plan}', 'PlanningController@show')->name('show');
 
@@ -35,3 +36,7 @@ Route::post('update/{id}', 'PlanningController@update')->name('update');
 
 Route::get('/delete/{id}', 'PlanningController@delete')->name('delete');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

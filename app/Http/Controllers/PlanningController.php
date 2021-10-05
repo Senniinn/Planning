@@ -10,6 +10,16 @@ use Illuminate\Support\Facades\DB;
 
 class PlanningController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $plannings = Planning::orderBy('date', 'asc')->get();
